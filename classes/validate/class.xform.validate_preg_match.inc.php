@@ -13,6 +13,7 @@ class rex_xform_validate_preg_match extends rex_xform_validate_abstract
     {
         if ($this->params['send'] == '1') {
             $pm = $this->getElement(3);
+            $pm = str_replace('\OR', "|", $pm);
             foreach ($this->obj_array as $Object) {
                 preg_match($pm, $Object->getValue(), $matches);
                 if (count($matches) > 0 && current($matches) == $Object->getValue()) {
